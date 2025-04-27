@@ -1,0 +1,78 @@
+/* Estilos generales */
+.mis-reservas {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .titulo {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .reservas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .reserva-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .reserva-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .reserva-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .sala {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .estado {
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .detalle {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  /* Estilos específicos para los estados */
+  .confirmada {
+    border-left-color: #28a745;
+  }
+  
+  .pendiente {
+    border-left-color: #ffc107;
+  }
+  
+  .cancelada {
+    border-left-color: #dc3545;
+  }
+  

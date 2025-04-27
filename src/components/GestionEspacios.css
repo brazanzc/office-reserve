@@ -1,0 +1,112 @@
+/* Estilos Generales */
+.gestion-espacios {
+    font-family: 'Arial', sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .titulo {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .espacios-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .espacio-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .espacio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .espacio-nombre {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .espacio-capacidad, .espacio-ubicacion {
+    font-size: 1rem;
+    color: #666;
+    margin-left: 10px;
+  }
+  
+  .espacio-amenidades {
+    font-size: 0.9rem;
+    color: #999;
+  }
+  
+  .form-titulo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .form-agregar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .input-form {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-form:focus {
+    border-color: #007bff;
+  }
+  
+  .btn-agregar {
+    padding: 12px 20px;
+    font-size: 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-agregar:hover {
+    background-color: #218838;
+  }
+  
+  .link-volver {
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  
+  .link-volver:hover {
+    text-decoration: underline;
+  }
+  
