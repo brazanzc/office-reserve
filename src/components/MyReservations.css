@@ -1,0 +1,58 @@
+.my-reservations {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  
+  .reservation-list {
+    list-style: none;
+    margin-top: 1.5rem;
+  }
+  
+  .reservation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    background: #f8fafb;
+    transition: all 0.3s;
+  }
+  
+  .reservation-item:hover {
+    background: #f1f5f9;
+  }
+  
+  .reservation-info {
+    flex: 1;
+  }
+  
+  .reservation-space {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+  }
+  
+  .reservation-time {
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+  
+  .cancel-btn {
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  
+  .cancel-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+  }

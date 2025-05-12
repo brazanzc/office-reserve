@@ -1,45 +1,84 @@
-// src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
-import Home from './components/Home'; // 👈 Ahora Home separado
-import GestionEspacios from './components/GestionEspacios';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import CalendarView from './components/CalendarView';
+import SpaceList from './components/SpaceList';
+import ReservationForm from './components/ReservationForm';
+import MyReservations from './components/MyReservations';
+import Login from './components/Login';
 import './App.css';
-import MisReservas from './components/MisReservas';
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <nav style={{
-          background: '#f5f5f5',
-          padding: '10px',
-          marginBottom: '20px',
-          borderBottom: '1px solid #ddd'
-        }}>
-          <Link to="/" style={{ marginRight: '20px', textDecoration: 'none', color: 'black' }}>🏠 Inicio</Link>
-          <Link to="/gestion-espacios" style={{
-            padding: '8px 12px',
-            background: '#4CAF50',
-            color: 'white',
-            borderRadius: '5px',
-            textDecoration: 'none'
-          }}>➕ Gestionar Espacios
-          </Link>
-          <Link to="/mis-reservas" style={{ marginLeft: '20px', textDecoration: 'none', color: 'black' }}>
-  📄 Mis Reservas
-</Link>
-        </nav>
+  const [showForm, setShowForm] = useState(false);
+  const [currentView, setCurrentView] = useState('calendar'); // 'calendar' | 'myReservations'
+  const [selectedSpace, setSelectedSpace] = useState(null);
+  const [reservations, setReservations] = useState([]);
+  const [user, setUser] = useState(null);
 
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/gestion-espacios" element={<GestionEspacios />} />
-            <Route path="/mis-reservas" element={<MisReservas />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+  // Cargar reservas al iniciar
+  useEffect(() => {
+    const saved = localStorage.getItem('reservations');
+    if (saved) setReservations(JSON.parse(saved));
+  }, []);
+
+  // Guardar reservas cuando cambian
+  useEffect(() => {
+    localStorage.setItem('reservations', JSON.stringify(reservations));
+  }, [reservations]);
+
+  const handleReserveClick = (spaceId) => {
+    setSelectedSpace(spaceId);
+    setShowForm(true);
+  };
+
+  const handleSubmitReservation = (reservationData) => {
+    const newReservation = {
+      ...reservationData,
+      id: Date.now(),
+      userId: user?.id || 'guest',
+      status: 'confirmed'
+    };
+    setReservations([...reservations, newReservation]);
+    setShowForm(false);
+    alert(`Reserva confirmada para el espacio ${reservationData.spaceId}`);
+  };
+
+  const cancelReservation = (id) => {
+    setReservations(reservations.filter(res => res.id !== id));
+  };
+
+  if (!user) {
+    return <Login onLogin={setUser} />;
+  }
+
+  return (
+    <div className="App">
+      <Header 
+        user={user} 
+        onLogout={() => setUser(null)} 
+        onChangeView={setCurrentView} 
+      />
+      
+      <main>
+        {showForm ? (
+          <ReservationForm 
+            initialSpace={selectedSpace} 
+            reservations={reservations}
+            onSubmit={handleSubmitReservation} 
+            onCancel={() => setShowForm(false)}
+          />
+        ) : currentView === 'calendar' ? (
+          <>
+            <CalendarView reservations={reservations} />
+            <SpaceList onReserveClick={handleReserveClick} />
+          </>
+        ) : (
+          <MyReservations 
+            reservations={reservations.filter(res => res.userId === user?.id)} 
+            onCancel={cancelReservation}
+          />
+        )}
+      </main>
+    </div>
   );
 }
 
